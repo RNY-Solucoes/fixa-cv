@@ -12,6 +12,7 @@ import yank from "./assets/logos/yank-logo.svg";
 import FacebookIcon from "./Components/facebook_icon";
 import InstagramIcon from "./Components/instagram_icon";
 import QuemSomos from "./Components/sections/QuemSomos";
+import Servicos from "./Components/sections/Servicos";
 
 function App() {
   return (
@@ -92,6 +93,7 @@ function App() {
           </Marquee>
         </section>
         <QuemSomos />
+        <Servicos />
       </main>
     </div>
   );
