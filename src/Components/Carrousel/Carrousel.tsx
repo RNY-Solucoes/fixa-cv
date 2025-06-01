@@ -6,6 +6,8 @@ import fachada5 from "../../assets/fachadas/fachada8.png";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 
+import "./sliders.css";
+
 export default function Carrousel() {
   const [sliderRef] = useKeenSlider({
     breakpoints: {
