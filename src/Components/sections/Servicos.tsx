@@ -1,23 +1,19 @@
 import Bean from "../bean";
-import three from "../../assets/images/threeImages.jpg"; // Imagem de banner/cabeçalho
+import three from "../../assets/images/threeImages.jpg";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { useState } from "react";
 
-// Imagens das fachadas (conforme seus imports originais)
-import comercio from "../../assets/fachadas/fachada7.png";
+import comercio from "../../assets/fachadas/fachada6.png";
 import residencial from "../../assets/fachadas/residencial.jpg";
-import letraCaixa from "../../assets/fachadas/letra_caixa.jpg"; // Imagem para Letra Caixa
-import totem from "../../assets/fachadas/totem.jpg"; // Imagem para Totens
+import letraCaixa from "../../assets/fachadas/letra_caixa.jpg";
+import totem from "../../assets/fachadas/totem.jpg";
 
-// Definição dos dados das fachadas (fora do componente para não ser recriado a cada renderização)
 const fachadaData = {
   comercial: {
     mainDescription:
       "ACM (Aluminum Composite Material) para fachadas comerciais personalizadas.",
-    showBenefit: true,
-    benefitText:
-      "ACM (Aluminum Composite Material) para durabilidade e estética.",
+
     subItems: [
       {
         title: "ACM 3mm",
@@ -38,11 +34,6 @@ const fachadaData = {
     benefitText:
       "ACM (Aluminum Composite Material) Kynnar para excepcional durabilidade e retenção de cor (15 anos de garantia), além de estética superior.",
     subItems: [
-      {
-        title: "Revestimento de ACM 4mm Kynnar (15 anos de garantia)",
-        description:
-          "Chapas de Alumínio Composto com 4mm de espessura e pintura Kynnar (PVDF). Esta pintura é reconhecida pela sua excepcional resistência a raios UV, desbotamento e condições climáticas adversas, o que justifica a longa garantia. Proporciona um acabamento sofisticado e duradouro para fachadas residenciais.",
-      },
       {
         title: "Portas em ACM 4mm Kynnar (15 anos de garantia)",
         description:
@@ -74,7 +65,6 @@ const fachadaData = {
     ],
   },
   totens: {
-    // Chave 'totens' (singular) para corresponder ao estado
     mainDescription:
       "Totens informativos e promocionais para melhor visibilidade.",
     showBenefit: true,
@@ -219,12 +209,6 @@ export default function Servicos() {
                 <p className="text-preto mb-4 text-lg leading-relaxed">
                   {currentDisplayData.mainDescription}
                 </p>
-                {currentDisplayData.showBenefit &&
-                  currentDisplayData.benefitText && (
-                    <p className="text-light-gray my-4 ml-5 text-base leading-relaxed font-normal">
-                      {currentDisplayData.benefitText}
-                    </p>
-                  )}
                 {currentDisplayData.subItems &&
                   currentDisplayData.subItems.length > 0 && (
                     <ul

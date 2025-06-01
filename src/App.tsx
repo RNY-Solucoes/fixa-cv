@@ -216,9 +216,11 @@ function App() {
         </section>
       </main>
       <footer className="bg-preto relative mt-48 flex min-h-96 w-full items-start justify-between px-25 py-25">
-        <Button className="bg-secondary-yellow hover:bg-mostard-orange absolute top-0 left-1/2 h-25 w-[398px] -translate-x-1/2 -translate-y-20 cursor-pointer px-6 py-3 text-xl font-bold">
-          AGENDAR UMA CONVERSA
-        </Button>
+        <a href="https://wa.me/message/YYJWHNXPTEZMJ1" target="_blank">
+          <Button className="bg-secondary-yellow hover:bg-mostard-orange absolute top-0 left-1/2 h-25 w-[398px] -translate-x-1/2 -translate-y-20 cursor-pointer px-6 py-3 text-xl font-bold">
+            AGENDAR UMA CONVERSA
+          </Button>
+        </a>
         <div className="flex flex-col items-start justify-start gap-10">
           <img src={logo} alt="Logo fixa cv" />
           <span className="max-w-120 text-left text-base leading-6 font-medium text-white">
@@ -257,12 +259,16 @@ function App() {
               Instagram
             </span>
           </div>
-          <div className="flex items-center gap-2">
+          <a
+            href="https://wa.me/message/YYJWHNXPTEZMJ1"
+            className="flex items-center gap-2"
+            target="_blank"
+          >
             <Whatsapp_icon className="inline-block text-white" />
-            <span className="ml-2 text-base leading-6 font-medium text-white">
+            <span className="hover:text-secondary-yellow ml-2 text-base leading-6 font-medium text-white">
               Whatsapp
             </span>
-          </div>
+          </a>
         </div>
       </footer>
     </div>
