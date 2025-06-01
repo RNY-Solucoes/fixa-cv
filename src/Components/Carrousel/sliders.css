@@ -1,0 +1,33 @@
+/* Em YourCustomSlickStyles.css */
+
+.slick-carousel-wrapper {
+  margin: 0 auto; /* Centralizar o carrossel na página, se necessário */
+  /* max-width: 800px; /* Limitar a largura máxima */
+}
+
+.slick-slide-item {
+  padding: 0 15px; /* Adiciona um espaçamento interno se os slides estiverem muito colados */
+                   /* Ou use margin no conteúdo interno do slide */
+  box-sizing: border-box;
+  outline: none; /* Remove outline ao focar */
+}
+
+.slick-slide-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px; /* Exemplo de borda arredondada */
+  /* Adicione outros estilos para a imagem conforme necessário */
+}
+
+/* Para destacar o slide central (ativo) */
+.slick-center .slick-slide-item {
+  /* Exemplo: adicionar uma sombra ou aumentar um pouco */
+  transform: scale(1.08); /* Aumenta um pouco o slide central */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Ajuste o estilo das setas se necessário */
+.slick-prev:before,
+.slick-next:before {
+  color: black; /* Mude a cor das setas padrão, se estiver usando o tema padrão */
+}

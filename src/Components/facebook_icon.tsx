@@ -15,7 +15,7 @@ export default function Facebook_icon({
       width={width || 25}
       height={height || 25}
       viewBox="0 0 29 29"
-      className={`hover:text-secondary-yellow cursor-pointer text-white transition-colors duration-200 ${className}`}
+      className={`hover:text-secondary-yellow cursor-pointer transition-colors duration-200 ${className}`}
     >
       <path
         fillRule="evenodd"
