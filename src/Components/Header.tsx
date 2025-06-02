@@ -52,7 +52,7 @@ export default function Header() {
             size={28}
             className="text-secondary-yellow group-hover:text-preto h-5 w-5 lg:h-6 lg:w-6"
           />{" "}
-          <span className="w-auto text-left text-xs leading-tight font-semibold lg:text-sm lg:font-bold">
+          <span className="w-autotext-left text-xs leading-tight font-semibold lg:text-base lg:font-bold">
             Fazer um orçamento
           </span>
         </a>

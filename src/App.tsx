@@ -216,10 +216,13 @@ function App() {
         </section>
       </main>
       <footer className="bg-preto relative mt-48 flex min-h-96 w-full items-start justify-between px-25 py-25">
-        <a href="https://wa.me/message/YYJWHNXPTEZMJ1" target="_blank">
-          <Button className="bg-secondary-yellow hover:bg-mostard-orange absolute top-0 left-1/2 h-25 w-[398px] -translate-x-1/2 -translate-y-20 cursor-pointer px-6 py-3 text-xl font-bold">
-            AGENDAR UMA CONVERSA
-          </Button>
+        <a
+          href="https://wa.me/message/YYJWHNXPTEZMJ1"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-secondary-yellow hover:bg-mostard-orange absolute top-0 left-1/2 flex h-25 w-[398px] -translate-x-1/2 -translate-y-20 cursor-pointer items-center justify-center rounded-2xl px-6 py-3 text-xl font-bold"
+        >
+          <span className="text-white">AGENDAR UMA CONVERSA</span>
         </a>
         <div className="flex flex-col items-start justify-start gap-10">
           <img src={logo} alt="Logo fixa cv" />
