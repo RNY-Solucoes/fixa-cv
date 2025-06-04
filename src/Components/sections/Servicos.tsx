@@ -111,7 +111,7 @@ export default function Servicos() {
   const currentImage = imagens[tipoFachada];
 
   return (
-    <section className="flex w-full flex-col items-center justify-center gap-32">
+    <section className="flex w-full flex-col items-center justify-center gap-32" id="portfolio">
       <div className="flex w-full flex-col items-center justify-center gap-5">
         <Bean text="Portfólio" />
         <h2 className="max-w-3/4 text-center text-5xl leading-12 font-bold tracking-wide text-black">

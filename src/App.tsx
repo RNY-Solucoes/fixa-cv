@@ -25,49 +25,41 @@ function App() {
     <div className="flex min-h-screen w-full flex-col">
       <header className="relative flex h-[800px] w-full flex-col overflow-hidden">
         <div
-          className="absolute inset-0 bg-[url(/src/assets/images/jeep.png)] bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-[url(/src/assets/images/slide1.png)] bg-center bg-no-repeat lg:bg-cover"
           style={{
-            filter: "blur(3.25px)",
+            // filter: "blur(3.25px)",
             transform: "scale(1.02)",
             zIndex: -1,
           }}
         />
         <Header />
-        <div className="flex w-full flex-col justify-between px-25 py-28 text-white lg:flex-row">
-          <div className="flex flex-col items-center gap-5 lg:items-start">
-            <h1 className="max-w-130 text-center text-6xl leading-18 font-bold tracking-wide lg:text-left">
+        <div className="flex w-full flex-col justify-end px-25 py-28 text-white lg:flex-row">
+          <div className="flex flex-col items-center gap-5 lg:items-end">
+            <h1 className="max-w-130 text-center text-6xl leading-18 font-bold tracking-wide lg:text-right">
               Transformamos sua{" "}
               <span className="text-secondary-yellow">Marca</span> em{" "}
               <span className="text-secondary-yellow">Destaque Visual</span>.
             </h1>
             <Separator className="bg-secondary-yellow my-1 max-w-20" />
-            <p className="max-w-130 text-center text-sm leading-6 font-normal text-white lg:text-left">
+            <p className="max-w-130 text-center text-sm leading-6 font-normal text-white lg:text-right">
               Especialistas em fachadas há mais de 14 anos, oferecendo soluções
               personalizadas para destacar sua empresa.
             </p>
             <div className="invi flex items-center gap-2">
-              <Button className="bg-secondary-yellow hover:bg-mostard-orange cursor-pointer py-5.5 text-base font-bold">
-                Quem somos
-              </Button>
-              <Button
-                variant="link"
-                className="ml-4 cursor-pointer font-bold text-white"
-              >
-                Nossos serviços <ChevronRight />
-              </Button>
-            </div>
-          </div>
-          <div className="mt-10 flex h-19 items-center justify-center gap-5">
-            <div className="flex gap-4 lg:flex-col">
-              <a href="https://www.facebook.com" target="_blank">
-                <FacebookIcon />
+              <a href="#quem-somos">
+                <Button className="bg-secondary-yellow hover:bg-mostard-orange cursor-pointer py-5.5 text-base font-bold">
+                  Quem somos
+                </Button>
               </a>
-              <InstagramIcon />
+              <a href="#portfolio">
+                <Button
+                  variant="link"
+                  className="ml-4 cursor-pointer font-bold text-white"
+                >
+                  Nossos serviços <ChevronRight />
+                </Button>
+              </a>
             </div>
-            <Separator
-              orientation="vertical"
-              className="bg-secondary-yellow invisible lg:visible"
-            />
           </div>
         </div>
       </header>
@@ -100,7 +92,10 @@ function App() {
             </div>
           </Marquee>
         </section>
-        <section className="flex w-full flex-col items-center justify-center gap-32 lg:h-screen">
+        <section
+          className="flex w-full flex-col items-center justify-center gap-32 lg:h-screen"
+          id="quem-somos"
+        >
           <div className="flex flex-col items-center justify-center gap-5">
             <Bean text="Quem somos" />
             <h2 className="max-w-3/4 text-center text-5xl leading-12 font-bold tracking-wide text-black">
@@ -166,7 +161,10 @@ function App() {
           </div>
         </section>
         <Servicos />
-        <section className="flex h-screen w-full flex-col items-center justify-center gap-32">
+        <section
+          className="flex h-screen w-full flex-col items-center justify-center gap-32"
+          id="depoimentos"
+        >
           <div className="flex flex-col items-center justify-center gap-5">
             <Bean text="Depoimentos" />
             <h2 className="text-center text-5xl leading-12 font-bold tracking-wide text-black">
@@ -191,7 +189,10 @@ function App() {
             </div>
           </div>
         </section>
-        <section className="flex w-full flex-col items-center justify-center gap-32">
+        <section
+          className="flex w-full flex-col items-center justify-center gap-32"
+          id="contato"
+        >
           <Separator className="bg-secondary-yellow border-secondary-yellow my-1 max-w-80 border-2" />
           <div className="flex w-full flex-col items-center justify-center gap-4">
             <h3 className="text-preto max-w-70 text-center text-4xl leading-12 font-bold">

@@ -2,11 +2,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
 
 *{
     box-sizing: border-box;
     font-family: 'Ubuntu', sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
 }
 
 @theme{
