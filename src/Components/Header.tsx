@@ -45,7 +45,7 @@ export default function Header() {
           ))}
         </ul>
         <a
-          href="#orcamento"
+          href="#contato"
           className="hover:text-secondary-yellow hidden items-center justify-end gap-2 rounded-md px-3 py-2 transition-colors duration-200 md:flex lg:gap-3 lg:px-4"
         >
           <Headset
