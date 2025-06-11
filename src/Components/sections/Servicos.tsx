@@ -1,5 +1,5 @@
 import Bean from "../bean";
-import three from "../../assets/images/threeImages.jpg";
+import FachadasCarousel from "../FachadaCarousel/FachadaCarousel";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { useState } from "react";
@@ -130,12 +130,9 @@ export default function Servicos() {
               Contratar Serviços
             </Button>
           </div>
+          {/* Substituindo a imagem three pelo carrossel */}
           <div className="flex h-full w-full items-center justify-center">
-            <img
-              src={three}
-              alt="Apresentação de serviços e soluções de fachadas"
-              className="h-full w-full rounded-lg"
-            />
+            <FachadasCarousel />
           </div>
         </div>
       </div>

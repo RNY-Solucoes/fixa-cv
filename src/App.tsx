@@ -1,5 +1,5 @@
 import { Check, ChevronRight, Mail, MapPin } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Header from "./Components/Header";
 import { Button } from "./Components/ui/button";
 import { Separator } from "./Components/ui/separator";
@@ -35,6 +35,14 @@ function App() {
   // Estado para controlar o slide atual
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Refs para as imagens
+  const fachada1Ref = useRef<HTMLImageElement>(null);
+  const fachada2Ref = useRef<HTMLImageElement>(null);
+
+  // Estados para controlar a visibilidade das imagens
+  const [isImage1Visible, setIsImage1Visible] = useState(false);
+  const [isImage2Visible, setIsImage2Visible] = useState(false);
+
   // Array com os slides
   const slides = [slide1, slide2, slide3, slide4];
 
@@ -46,6 +54,32 @@ function App() {
 
     return () => clearInterval(slideInterval);
   }, [slides.length]);
+
+  // useEffect para observar quando as imagens entram na viewport
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target === fachada1Ref.current) {
+            setTimeout(() => setIsImage1Visible(true), 200);
+          }
+          if (entry.target === fachada2Ref.current) {
+            setTimeout(() => setIsImage2Visible(true), 600);
+          }
+        }
+      });
+    }, observerOptions);
+
+    if (fachada1Ref.current) observer.observe(fachada1Ref.current);
+    if (fachada2Ref.current) observer.observe(fachada2Ref.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const localBusinessSchema = {
@@ -431,17 +465,27 @@ function App() {
 
             <figure className="relative flex h-full w-full flex-col items-center justify-start sm:w-5/6 md:w-2/3 lg:w-1/2">
               <img
+                ref={fachada1Ref}
                 src={fachada1}
                 alt="Fachada comercial em ACM realizada pela Fixa Comunicação Visual em Bauru-SP"
-                className="relative z-10 w-4/5 rounded-2xl sm:w-3/4 md:w-[30rem] md:translate-x-0 lg:w-[35rem] lg:translate-x-20"
+                className={`relative z-10 w-4/5 rounded-2xl transition-all duration-1000 ease-out sm:w-3/4 md:w-[30rem] md:translate-x-0 lg:w-[35rem] lg:translate-x-20 ${
+                  isImage1Visible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-8 opacity-0"
+                }`}
                 loading="lazy"
                 width="560"
                 height="400"
               />
               <img
+                ref={fachada2Ref}
                 src={fachada2}
                 alt="Fachada residencial com acabamento premium - Fixa Comunicação Visual Bauru"
-                className="relative z-20 -mt-8 ml-4 w-4/5 rounded-2xl sm:-mt-12 sm:ml-8 sm:w-3/4 md:-mt-16 md:ml-12 md:w-[30rem] lg:-mt-20 lg:ml-0 lg:w-[35rem]"
+                className={`relative z-20 -mt-8 ml-4 w-4/5 rounded-2xl transition-all duration-1000 ease-out sm:-mt-12 sm:ml-8 sm:w-3/4 md:-mt-16 md:ml-12 md:w-[30rem] lg:-mt-20 lg:ml-0 lg:w-[35rem] ${
+                  isImage2Visible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-8 opacity-0"
+                }`}
                 loading="lazy"
                 width="560"
                 height="400"
