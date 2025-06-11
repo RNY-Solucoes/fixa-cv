@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Página Principal -->
+  <url>
+    <loc>https://www.fixacv.com.br/</loc>
+    <lastmod>2024-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.fixacv.com.br/og-image.jpg</image:loc>
+      <image:title>Fixa Comunicação Visual - Fachadas Bauru</image:title>
+      <image:caption>Especialistas em fachadas há 16 anos em Bauru-SP</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Quem Somos -->
+  <url>
+    <loc>https://www.fixacv.com.br/#quem-somos</loc>
+    <lastmod>2024-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Serviços -->
+  <url>
+    <loc>https://www.fixacv.com.br/#servicos</loc>
+    <lastmod>2024-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Contato -->
+  <url>
+    <loc>https://www.fixacv.com.br/#contato</loc>
+    <lastmod>2024-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Depoimentos -->
+  <url>
+    <loc>https://www.fixacv.com.br/#depoimentos</loc>
+    <lastmod>2024-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

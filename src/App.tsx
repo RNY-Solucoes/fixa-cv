@@ -1,4 +1,5 @@
 import { Check, ChevronRight, Mail, MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
 import Header from "./Components/Header";
 import { Button } from "./Components/ui/button";
 import { Separator } from "./Components/ui/separator";
@@ -8,7 +9,13 @@ import usp from "./assets/logos/logo-usp.svg";
 import ext from "./assets/logos/ext-logo.svg";
 import super_geeks from "./assets/logos/super-geeks.svg";
 import videira_motors from "./assets/logos/videira-motors.svg";
-import yank from "./assets/logos/yank-logo.svg";
+import zopone from "./assets/logos/zopone.svg";
+import superbom from "./assets/logos/super_bom.svg";
+import oralsin from "./assets/logos/oral_sin.svg";
+import sesi from "./assets/logos/sesi.svg";
+import biolab from "./assets/logos/biolab.svg";
+import skyfit from "./assets/logos/skyfitt.svg";
+import atacado from "./assets/logos/atacado_autoparts.svg";
 import FacebookIcon from "./Components/facebook_icon";
 import InstagramIcon from "./Components/instagram_icon";
 import fachada1 from "./assets/fachadas/fachada1.png";
@@ -21,92 +28,343 @@ import Whatsapp_icon from "./Components/whatsapp_icon";
 import logo from "./assets/images/logo.svg";
 
 function App() {
+  // Estado para controlar o slide atual
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Array com os slides
+  const slides = [
+    "/src/assets/images/slide1.png",
+    "/src/assets/images/slide2.png",
+    "/src/assets/images/slide3.png",
+    "/src/assets/images/slide4.png",
+  ];
+
+  // useEffect para o slideshow automático
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000); // Muda a cada 5 segundos
+
+    return () => clearInterval(slideInterval);
+  }, [slides.length]);
+
+  useEffect(() => {
+    const localBusinessSchema = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: "Fixa Comunicação Visual",
+      description:
+        "Especialistas em fachadas comerciais, residenciais, letra caixa luminosa e totens publicitários há 16 anos em Bauru-SP",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Rua Carlos Giaxa 6-83 PQ Julio Nobrega",
+        addressLocality: "Bauru",
+        addressRegion: "SP",
+        postalCode: "17003-421",
+        addressCountry: "BR",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: "-22.314564",
+        longitude: "-49.060654",
+      },
+      email: "contato@fixacv.com.br",
+      url: "https://www.fixacv.com.br",
+      sameAs: [
+        "https://www.facebook.com/Fixacomunicacaovisual",
+        "https://www.instagram.com/fixacomunicacaovisual/",
+      ],
+      foundingDate: "2008",
+      areaServed: {
+        "@type": "Place",
+        name: "Bauru, Marília, Lins, Jaú, São Paulo",
+      },
+      serviceType: [
+        "Fachadas Comerciais",
+        "Fachadas Residenciais",
+        "Letra Caixa Luminosa",
+        "Totens Publicitários",
+        "Comunicação Visual",
+        "ACM",
+      ],
+      priceRange: "$$",
+    };
+
+    const websiteSchema = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Fixa Comunicação Visual",
+      url: "https://www.fixacv.com.br",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: "https://www.fixacv.com.br/search?q={search_term_string}",
+        "query-input": "required name=search_term_string",
+      },
+    };
+
+    const addSchema = (
+      schema: {
+        "@context": string;
+        "@type": string;
+        name: string;
+        description?: string;
+        address?: {
+          "@type": string;
+          streetAddress: string;
+          addressLocality: string;
+          addressRegion: string;
+          postalCode: string;
+          addressCountry: string;
+        };
+        geo?: { "@type": string; latitude: string; longitude: string };
+        email?: string;
+        url: string;
+        sameAs?: string[];
+        foundingDate?: string;
+        areaServed?: { "@type": string; name: string };
+        serviceType?: string[];
+        priceRange?: string;
+        potentialAction?: {
+          "@type": string;
+          target: string;
+          "query-input": string;
+        };
+      },
+      id: string,
+    ) => {
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.id = id;
+      script.textContent = JSON.stringify(schema);
+      document.head.appendChild(script);
+    };
+
+    addSchema(localBusinessSchema, "local-business-schema");
+    addSchema(websiteSchema, "website-schema");
+
+    document.title =
+      "Fixa Comunicação Visual | Especialistas em Fachadas há 16 Anos | Bauru-SP";
+
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement("meta");
+      (metaDescription as HTMLMetaElement).name = "description";
+      document.head.appendChild(metaDescription);
+    }
+    (metaDescription as HTMLMetaElement).content =
+      "Fixa Comunicação Visual: 16 anos de experiência em fachadas comerciais, residenciais, letra caixa e totens em Bauru-SP. Rua Carlos Giaxa 6-83 PQ Julio Nobrega. ACM, letreiros luminosos e projetos personalizados com qualidade garantida.";
+
+    return () => {
+      // Cleanup
+      ["local-business-schema", "website-schema"].forEach((id) => {
+        const script = document.getElementById(id);
+        if (script) document.head.removeChild(script);
+      });
+    };
+  }, []);
+
+  const handleScrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="flex min-h-screen w-full flex-col">
-      <header className="relative flex h-[800px] w-full flex-col overflow-hidden">
-        <div
-          className="absolute inset-0 bg-[url(/src/assets/images/slide1.png)] bg-center bg-no-repeat lg:bg-cover"
-          style={{
-            // filter: "blur(3.25px)",
-            transform: "scale(1.02)",
-            zIndex: -1,
-          }}
-        />
+      <header className="relative flex h-[600px] w-full flex-col overflow-hidden sm:h-[700px] md:h-[800px]">
+        {/* Container dos slides */}
+        <div className="">
+          {slides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${
+                index === currentSlide ? "opacity-100" : "opacity-0"
+              }`}
+              style={{
+                backgroundImage: `url(${slide})`,
+                transform: "scale(1.02)",
+                zIndex: -1,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Indicadores do slideshow  */}
+        <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? "bg-secondary-yellow w-6"
+                  : "bg-white/50 hover:bg-white/75"
+              }`}
+              aria-label={`Ir para slide ${index + 1}`}
+            />
+          ))}
+        </div>
         <Header />
-        <div className="flex w-full flex-col justify-end px-25 py-28 text-white lg:flex-row">
-          <div className="flex flex-col items-center gap-5 lg:items-end">
-            <h1 className="max-w-130 text-center text-6xl leading-18 font-bold tracking-wide lg:text-right">
-              Transformamos sua{" "}
-              <span className="text-secondary-yellow">Marca</span> em{" "}
-              <span className="text-secondary-yellow">Destaque Visual</span>.
-            </h1>
-            <Separator className="bg-secondary-yellow my-1 max-w-20" />
-            <p className="max-w-130 text-center text-sm leading-6 font-normal text-white lg:text-right">
-              Especialistas em fachadas há mais de 14 anos, oferecendo soluções
-              personalizadas para destacar sua empresa.
-            </p>
-            <div className="invi flex items-center gap-2">
-              <a href="#quem-somos">
-                <Button className="bg-secondary-yellow hover:bg-mostard-orange cursor-pointer py-5.5 text-base font-bold">
-                  Quem somos
-                </Button>
-              </a>
-              <a href="#portfolio">
-                <Button
-                  variant="link"
-                  className="ml-4 cursor-pointer font-bold text-white"
-                >
-                  Nossos serviços <ChevronRight />
-                </Button>
-              </a>
+        <div className="flex w-full flex-col justify-end px-4 py-16 text-white sm:px-8 sm:py-20 md:px-16 md:py-28 lg:flex-row lg:px-25">
+          <div className="flex flex-col items-center gap-4 sm:gap-5 lg:items-end">
+            <div className="rounded-xl bg-black/30 p-4 backdrop-blur-sm sm:p-6 md:p-8">
+              <h1 className="max-w-full px-4 text-center text-3xl leading-tight font-bold tracking-wide sm:max-w-130 sm:px-0 sm:text-4xl sm:leading-12 md:text-5xl md:leading-16 lg:text-right lg:text-6xl lg:leading-18">
+                Transformamos sua{" "}
+                <span className="text-secondary-yellow">Marca</span> em{" "}
+                <span className="text-secondary-yellow">Destaque Visual</span>.
+              </h1>
+              <Separator className="bg-secondary-yellow mx-auto my-1 max-w-16 sm:max-w-20 lg:mx-0 lg:ml-auto" />
+              <p className="max-w-full px-4 text-center text-xs leading-5 font-normal text-white sm:max-w-130 sm:px-0 sm:text-sm sm:leading-6 lg:text-right">
+                Especialistas em fachadas há mais de 16 anos, oferecendo
+                soluções personalizadas para destacar sua empresa.
+              </p>
+            </div>
+            <div className="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:gap-2">
+              <Button
+                className="bg-secondary-yellow hover:bg-mostard-orange w-full cursor-pointer px-6 py-3 text-sm font-bold sm:w-auto sm:py-5.5 sm:text-base"
+                onClick={() => handleScrollToSection("quem-somos")}
+              >
+                Quem somos
+              </Button>
+              <Button
+                variant="link"
+                className="cursor-pointer text-sm font-bold text-white sm:text-base"
+                onClick={() => handleScrollToSection("portfolio")}
+              >
+                Nossos serviços{" "}
+                <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
+              </Button>
             </div>
           </div>
         </div>
       </header>
-      <main className="bg-gray-background flex flex-col items-center justify-start gap-48 px-25 py-10">
-        <section className="flex w-full items-center">
-          <Marquee speed={30} gradient={true} pauseOnHover={true}>
-            <div className="flex items-center gap-32 px-25">
-              <img
-                src={cruzeiro}
-                alt="Logo Cruzeiro do Sul"
-                className="h-12 w-auto"
-              />
-              <img src={usp} alt="Logo USP" className="h-12 w-auto" />
-              <img src={ext} alt="Logo EXT" className="h-12 w-auto" />
-              <img
-                src={super_geeks}
-                alt="Logo Super Geeks"
-                className="h-12 w-auto"
-              />
-              <img
-                src={videira_motors}
-                alt="Logo Videira Motors"
-                className="h-12 w-auto"
-              />
-              <img
-                src={yank}
-                alt="Logo Yank Solutions"
-                className="h-12 w-auto"
-              />
-            </div>
-          </Marquee>
-        </section>
+
+      <main
+        className="bg-gray-background flex flex-col items-center justify-start gap-24 px-4 py-10 sm:gap-32 sm:px-8 md:gap-48 md:px-16 lg:px-25"
+        role="main"
+      >
         <section
-          className="flex w-full flex-col items-center justify-center gap-32 lg:h-screen"
-          id="quem-somos"
+          className="flex w-full flex-col items-center gap-8 sm:gap-12"
+          aria-label="Nossos clientes"
         >
-          <div className="flex flex-col items-center justify-center gap-5">
+          <h2 className="text-center text-2xl font-bold text-black sm:text-3xl md:text-4xl">
+            Nossos <span className="text-secondary-yellow">principais</span>{" "}
+            clientes
+          </h2>
+
+          <div className="w-full">
+            <h3 className="sr-only">
+              Clientes Atendidos pela Fixa Comunicação Visual
+            </h3>
+            <Marquee
+              speed={30}
+              gradient={true}
+              pauseOnHover={true}
+              aria-label="Logos dos nossos clientes"
+            >
+              <div className="flex items-center gap-16 px-8 sm:gap-24 sm:px-16 md:gap-32 md:px-25">
+                <img
+                  src={zopone}
+                  alt="Cliente Zopone - Fachada comercial realizada pela Fixa Comunicação Visual"
+                  className="h-8 w-auto sm:h-10 md:h-12"
+                  loading="lazy"
+                />
+                <img
+                  src={superbom}
+                  alt="Cliente Super Bom - Comunicação visual realizada pela Fixa Comunicação Visual"
+                  className="h-8 w-auto sm:h-10 md:h-12"
+                  loading="lazy"
+                />
+                <img
+                  src={oralsin}
+                  alt="Cliente Oralsin - Projeto de fachada realizada pela Fixa Comunicação Visual"
+                  className="h-8 w-auto sm:h-10 md:h-12"
+                  loading="lazy"
+                />
+                <img
+                  src={sesi}
+                  alt="Cliente SESI - Comunicação visual institucional realizada pela Fixa Comunicação Visual"
+                  className="h-8 w-auto sm:h-10 md:h-12"
+                  loading="lazy"
+                />
+                <img
+                  src={biolab}
+                  alt="Cliente Biolab - Fachada comercial realizada pela Fixa Comunicação Visual"
+                  className="h-8 w-auto sm:h-10 md:h-12"
+                  loading="lazy"
+                />
+                <img
+                  src={skyfit}
+                  alt="Cliente SkyFit - Projeto de comunicação visual realizada pela Fixa Comunicação Visual"
+                  className="h-8 w-auto sm:h-10 md:h-12"
+                  loading="lazy"
+                />
+                <img
+                  src={usp}
+                  alt="Cliente USP - Projeto de comunicação visual institucional"
+                  className="h-8 w-auto sm:h-10 md:h-12"
+                  loading="lazy"
+                />
+                <img
+                  src={ext}
+                  alt="Cliente EXT - Fachada comercial em ACM"
+                  className="h-8 w-auto sm:h-10 md:h-12"
+                  loading="lazy"
+                />
+                <img
+                  src={super_geeks}
+                  alt="Cliente Super Geeks - Letra caixa luminosa"
+                  className="h-8 w-auto sm:h-10 md:h-12"
+                  loading="lazy"
+                />
+                <img
+                  src={videira_motors}
+                  alt="Cliente Videira Motors - Totem publicitário"
+                  className="h-8 w-auto sm:h-10 md:h-12"
+                  loading="lazy"
+                />
+                <img
+                  src={atacado}
+                  alt="Cliente Atacado Autoparts - Fachada comercial realizada pela Fixa Comunicação Visual"
+                  className="h-8 w-auto sm:h-10 md:h-12"
+                  loading="lazy"
+                />
+                <img
+                  src={cruzeiro}
+                  alt="Cliente Cruzeiro do Sul - Comunicação visual educacional realizada pela Fixa Comunicação Visual"
+                  className="h-8 w-auto sm:h-10 md:h-12"
+                  loading="lazy"
+                />
+              </div>
+            </Marquee>
+          </div>
+        </section>
+
+        <section
+          className="flex min-h-screen w-full flex-col items-center justify-center gap-16 sm:gap-24 md:gap-32"
+          id="quem-somos"
+          itemScope
+          itemType="https://schema.org/AboutPage"
+        >
+          <header className="flex flex-col items-center justify-center gap-4 sm:gap-5">
             <Bean text="Quem somos" />
-            <h2 className="max-w-3/4 text-center text-5xl leading-12 font-bold tracking-wide text-black">
+            <h2 className="max-w-full px-4 text-center text-3xl leading-tight font-bold tracking-wide text-black sm:text-4xl sm:leading-10 md:text-5xl md:leading-12">
               Mais de 16 Anos de Excelência em fachadas
             </h2>
-          </div>
+          </header>
           <div className="flex w-full flex-col items-center justify-between gap-10 lg:flex-row">
-            <div className="flex h-full flex-col justify-center gap-11 lg:w-1/2">
-              <span className="max-w-200 text-center text-2xl leading-9 font-bold text-black lg:max-w-135 lg:text-left lg:text-3xl">
-                Fundada em 2008, a{" "}
-                <span className="text-secondary-yellow">
+            <article
+              className="flex h-full w-full flex-col items-center justify-center gap-6 sm:gap-8 md:gap-11 lg:w-1/2 lg:items-start"
+              itemProp="description"
+            >
+              <h3 className="max-w-full px-4 text-center text-lg leading-7 font-bold text-black sm:text-xl sm:leading-8 md:text-2xl md:leading-9 lg:max-w-135 lg:px-0 lg:text-left lg:text-3xl">
+                Fundada em{" "}
+                <time dateTime="2008" itemProp="foundingDate">
+                  2008
+                </time>
+                , a{" "}
+                <span className="text-secondary-yellow" itemProp="name">
                   Fixa Comunicação Visual
                 </span>{" "}
                 é especialista em{" "}
@@ -115,164 +373,351 @@ function App() {
                 <span className="text-secondary-yellow">todos</span> os portes
                 com <span className="text-secondary-yellow">qualidade</span> e{" "}
                 <span className="text-secondary-yellow">eficiência</span>.
-              </span>
-              <Separator
-                orientation="horizontal"
-                className="bg-secondary-yellow lg:max-w-20"
-              />
-              <span className="text-center text-xl font-normal text-black lg:max-w-135 lg:text-left lg:text-2xl">
-                Nosso compromisso é com a perfeição nos acabamentos, respeito e
-                transparência com clientes e colaboradores.
-              </span>
-              <div className="flex gap-5 self-center lg:flex-col lg:self-start">
-                <div className="flex items-center gap-2">
-                  <Check className="text-secondary-yellow inline-block" />
-                  <span>Profissionais experientes</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="text-secondary-yellow inline-block" />
-                  <span>Fachadas de qualidade</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="text-secondary-yellow inline-block" />
-                  <span>Aplicações modernas</span>
-                </div>
-              </div>
-              <Button className="bg-secondary-yellow hover:bg-mostard-orange w-fit cursor-pointer self-center py-5.5 text-base font-bold lg:self-start">
-                Quem somos
-              </Button>
-            </div>
+              </h3>
+
+              <p className="px-4 text-center text-base font-normal text-black sm:text-lg md:text-xl lg:max-w-135 lg:px-0 lg:text-left lg:text-2xl">
+                Nosso compromisso é com a{" "}
+                <strong>perfeição nos acabamentos</strong>,{" "}
+                <strong>respeito</strong> e transparência com clientes e
+                colaboradores.
+              </p>
+
+              <ul
+                className="flex flex-col gap-3 self-center sm:flex-row sm:gap-5 lg:flex-col lg:self-start"
+                role="list"
+              >
+                <li className="flex items-center justify-center gap-2 lg:justify-start">
+                  <Check
+                    className="text-secondary-yellow inline-block flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="text-sm font-light sm:text-base">
+                    <strong>Profissionais experientes</strong>
+                  </span>
+                </li>
+                <li className="flex items-center justify-center gap-2 lg:justify-start">
+                  <Check
+                    className="text-secondary-yellow inline-block flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="text-sm font-light sm:text-base">
+                    <strong>Fachadas de qualidade</strong>
+                  </span>
+                </li>
+                <li className="flex items-center justify-center gap-2 lg:justify-start">
+                  <Check
+                    className="text-secondary-yellow inline-block flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="text-sm font-light sm:text-base">
+                    <strong>Aplicações modernas</strong>
+                  </span>
+                </li>
+              </ul>
+
+              <a
+                href="#contato"
+                aria-label="Entre em contato para orçamento gratuito"
+              >
+                <Button className="bg-secondary-yellow hover:bg-mostard-orange w-full cursor-pointer self-center py-3 text-sm font-bold sm:w-fit sm:py-5.5 sm:text-base lg:self-start">
+                  Entre em Contato
+                </Button>
+              </a>
+            </article>
+
             <Separator
               orientation="vertical"
-              className="bg-secondary-yellow max-h-64 lg:mt-28"
+              className="bg-secondary-yellow hidden max-h-32 sm:max-h-48 md:max-h-64 lg:block"
             />
-            <div className="lg:1/2 flex h-full w-2/3 flex-col items-center justify-start">
+
+            <figure className="relative flex h-full w-full flex-col items-center justify-start sm:w-5/6 md:w-2/3 lg:w-1/2">
               <img
                 src={fachada1}
-                alt=""
-                className="relative z-1 w-[35rem] -translate-x-30 rounded-2xl lg:translate-x-31"
+                alt="Fachada comercial em ACM realizada pela Fixa Comunicação Visual em Bauru-SP"
+                className="relative z-10 w-4/5 rounded-2xl sm:w-3/4 md:w-[30rem] md:translate-x-0 lg:w-[35rem] lg:translate-x-20"
+                loading="lazy"
+                width="560"
+                height="400"
               />
               <img
                 src={fachada2}
-                alt=""
-                className="relative z-2 w-[35rem] translate-x-20 -translate-y-20 rounded-2xl lg:translate-x-0 lg:-translate-y-10"
+                alt="Fachada residencial com acabamento premium - Fixa Comunicação Visual Bauru"
+                className="relative z-20 -mt-8 ml-4 w-4/5 rounded-2xl sm:-mt-12 sm:ml-8 sm:w-3/4 md:-mt-16 md:ml-12 md:w-[30rem] lg:-mt-20 lg:ml-0 lg:w-[35rem]"
+                loading="lazy"
+                width="560"
+                height="400"
               />
-            </div>
+              <figcaption className="sr-only">
+                Exemplos de fachadas realizadas pela Fixa Comunicação Visual:
+                fachada comercial em ACM e fachada residencial
+              </figcaption>
+            </figure>
           </div>
         </section>
+
         <Servicos />
+
         <section
-          className="flex h-screen w-full flex-col items-center justify-center gap-32"
+          className="flex min-h-screen w-full flex-col items-center justify-center gap-16 sm:gap-24 md:gap-32"
           id="depoimentos"
+          itemScope
+          itemType="https://schema.org/ReviewSection"
         >
-          <div className="flex flex-col items-center justify-center gap-5">
+          <header className="flex flex-col items-center justify-center gap-4 sm:gap-5">
             <Bean text="Depoimentos" />
-            <h2 className="text-center text-5xl leading-12 font-bold tracking-wide text-black">
+            <h2 className="px-4 text-center text-3xl leading-tight font-bold tracking-wide text-black sm:text-4xl sm:leading-10 md:text-5xl md:leading-12">
               Depoimentos de Clientes
             </h2>
-          </div>
+          </header>
+
           <div className="flex w-full flex-col items-center justify-center gap-10">
-            <div className="items-centerer flex w-full gap-2">
-              <span className="max-w-52 text-left text-2xl font-bold">
+            <div className="flex w-full items-center justify-center lg:justify-start">
+              <h3 className="max-w-full px-4 text-xl font-bold sm:max-w-80 sm:text-center sm:text-2xl lg:px-0 lg:text-left">
                 Depoimentos de quem{" "}
                 <span className="text-secondary-yellow">escolheu</span>{" "}
                 <span className="text-secondary-yellow">qualidade</span>.
-              </span>
+              </h3>
             </div>
-            <div className="mt-10 grid h-full w-full grid-cols-3 place-items-center gap-10">
-              <Feedback />
-              <Feedback />
-              <Feedback />
-              <Feedback />
-              <Feedback />
+
+            <div
+              className="mt-6 grid w-full grid-cols-1 place-items-center gap-6 sm:mt-10 sm:grid-cols-2 sm:gap-8 md:gap-10 lg:grid-cols-3"
+              role="list"
+            >
+              <Feedback
+                text='"Empresa muita boa de prazo, qualidade e serviço! Recomendo fortemente!"'
+                user="Vitor Trimentose."
+              />
+              <Feedback
+                text='"Muito bom, pontuais e profissionais. Muito satisfeito com o atendimento, não tentou vender a solução mais cara e atendeu minhas expectativas"'
+                user="Fabio Teixeira de Souza."
+              />
+              <Feedback
+                text='"Com certeza daria 100 estrelas se tivesse. Excelente atendimento, pontualidade e resultado final! Foram atenciosos do começo ao fim de todos os processos e cumpriram todo o prometido, inclusive prazos. Recomendo muito! Na foto a fachada feita por eles."'
+                user="Wanessa Ferrari"
+              />
+
+              <Feedback
+                text='"Empresa nota 10 em atendimento e qualidade do serviço prestado. Cliente satisfeito sempre volta e cá estou! Recomendo de olhos fechados! Sucesso sempre!!!!"'
+                user="Jenniffer / ORIENTALE PILATES"
+              />
+
+              <Feedback
+                text='"Uma empresa responsável é muito organizada estou muito feliz com o prazo de entrega e com a qualidade do serviço."'
+                user="
+Jmplanejados Junior"
+              />
+
               <Feedback />
             </div>
           </div>
         </section>
+
         <section
-          className="flex w-full flex-col items-center justify-center gap-32"
+          className="flex w-full flex-col items-center justify-center gap-16 sm:gap-24 md:gap-32"
           id="contato"
+          itemScope
+          itemType="https://schema.org/ContactPage"
         >
-          <Separator className="bg-secondary-yellow border-secondary-yellow my-1 max-w-80 border-2" />
-          <div className="flex w-full flex-col items-center justify-center gap-4">
-            <h3 className="text-preto max-w-70 text-center text-4xl leading-12 font-bold">
+          <Separator className="bg-secondary-yellow border-secondary-yellow my-1 max-w-60 border-2 sm:max-w-80" />
+
+          <div className="flex w-full flex-col items-center justify-center gap-4 sm:gap-6">
+            <h2 className="text-preto max-w-full px-4 text-center text-2xl leading-8 font-bold sm:text-3xl sm:leading-10 md:text-4xl md:leading-12 lg:max-w-100">
               Vamos tirar sua{" "}
               <span className="text-secondary-yellow">ideia</span> do{" "}
               <span className="text-secondary-yellow">papel</span> ?
-            </h3>
-            <span className="text-preto max-w-90 text-center text-lg leading-6 font-normal">
+            </h2>
+
+            <p className="text-preto max-w-full px-4 text-center text-base leading-6 font-normal sm:text-lg lg:max-w-120 lg:leading-7">
               Entre em contato com a gente e transforme sua fachada com quem
               entende do assunto!
-            </span>
-            <div className="flex items-center gap-4">
-              <Facebook_icon className="text-preto" />
-              <InstagramIcon className="text-preto" />
-              <Whatsapp_icon className="text-preto" />
-              <div className="flex items-center gap-2">
-                <MapPin className="inline-block" />
-                <span>Rua Mário Fongaro, 78 - Arujá - SP</span>
+            </p>
+
+            <address className="flex flex-col flex-wrap items-center justify-center gap-4 not-italic sm:flex-row sm:gap-6 lg:flex-col">
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://www.facebook.com/Fixacomunicacaovisual"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-all duration-200 hover:scale-110"
+                  aria-label="Facebook da Fixa Comunicação Visual"
+                  title="Siga-nos no Facebook"
+                >
+                  <Facebook_icon className="text-preto hover:text-secondary-yellow h-6 w-6 transition-colors duration-200" />
+                </a>
+                <a
+                  href="https://www.instagram.com/fixacomunicacaovisual/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-all duration-200 hover:scale-110"
+                  aria-label="Instagram da Fixa Comunicação Visual"
+                  title="Siga-nos no Instagram"
+                >
+                  <InstagramIcon className="text-preto hover:text-secondary-yellow h-6 w-6 transition-colors duration-200" />
+                </a>
+                <a
+                  href="https://wa.me/message/YYJWHNXPTEZMJ1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-all duration-200 hover:scale-110"
+                  aria-label="WhatsApp da Fixa Comunicação Visual"
+                  title="Converse conosco no WhatsApp"
+                >
+                  <Whatsapp_icon className="text-preto hover:text-secondary-yellow h-6 w-6 transition-colors duration-200" />
+                </a>
               </div>
-            </div>
+
+              <div
+                className="flex items-center gap-2"
+                itemScope
+                itemType="https://schema.org/PostalAddress"
+              >
+                <a
+                  href="https://g.co/kgs/JGGiiNA"
+                  target="_blank"
+                  className="group flex items-center gap-2 transition-colors duration-200"
+                >
+                  <MapPin className="group-hover:text-secondary-yellow inline-block h-5 w-5 flex-shrink-0 text-black transition-colors duration-200" />
+                  <span className="group-hover:text-secondary-yellow text-center text-sm text-black transition-colors duration-200 sm:text-left sm:text-base">
+                    <span itemProp="streetAddress">
+                      Rua Carlos Giaxa 6-83 PQ Julio Nobrega
+                    </span>{" "}
+                    - <span itemProp="addressLocality">Bauru</span> -{" "}
+                    <span itemProp="addressRegion">SP</span> -{" "}
+                    <span itemProp="postalCode">CEP 17003-421</span>
+                  </span>
+                </a>
+              </div>
+            </address>
           </div>
         </section>
       </main>
-      <footer className="bg-preto relative mt-48 flex min-h-96 w-full items-start justify-between px-25 py-25">
+
+      <footer
+        className="bg-preto relative mt-24 flex min-h-96 w-full flex-col items-start justify-between gap-8 px-4 py-16 sm:mt-32 sm:px-8 sm:py-20 md:mt-48 md:px-16 md:py-25 lg:flex-row lg:gap-0 lg:px-25"
+        role="contentinfo"
+        itemScope
+        itemType="https://schema.org/LocalBusiness"
+      >
         <a
           href="https://wa.me/message/YYJWHNXPTEZMJ1"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-secondary-yellow hover:bg-mostard-orange absolute top-0 left-1/2 flex h-25 w-[398px] -translate-x-1/2 -translate-y-20 cursor-pointer items-center justify-center rounded-2xl px-6 py-3 text-xl font-bold"
+          className="bg-secondary-yellow hover:bg-mostard-orange absolute -top-6 left-1/2 flex h-16 w-full max-w-sm -translate-x-1/2 cursor-pointer items-center justify-center rounded-2xl px-4 py-3 text-base font-bold sm:-top-8 sm:h-20 sm:max-w-md sm:px-6 sm:text-lg md:-top-10 md:h-25 md:max-w-[398px] md:text-xl lg:-top-20"
+          aria-label="Agendar conversa via WhatsApp"
+          title="Clique para agendar uma conversa via WhatsApp"
         >
-          <span className="text-white">AGENDAR UMA CONVERSA</span>
+          <span className="text-center text-white">AGENDAR UMA CONVERSA</span>
         </a>
-        <div className="flex flex-col items-start justify-start gap-10">
-          <img src={logo} alt="Logo fixa cv" />
-          <span className="max-w-120 text-left text-base leading-6 font-medium text-white">
-            Especialistas em fachadas, desenvolvemos projetos personalizados
-            para valorizar a identidade da sua marca. Da criação à instalação,
-            entregamos soluções completas com qualidade, inovação e foco nos
-            resultados do seu negócio.
-          </span>
-        </div>
-        <div className="flex flex-col items-start justify-start gap-4">
-          <span className="text-2xl font-bold text-white">Contatos</span>
-          <div className="flex items-center gap-2">
-            <MapPin className="inline-block text-white" />
-            <span className="ml-2 text-base leading-6 font-medium text-white">
-              Rua Mário Fongaro, 78 - Arujá - SP
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Mail className="inline-block text-white" />
-            <span className="ml-2 text-base leading-6 font-medium text-white">
-              contato@fixacv.com.br
-            </span>
-          </div>
-        </div>
-        <div className="flex flex-col items-start justify-start gap-4">
-          <span className="text-2xl font-bold text-white">Redes Sociais</span>
-          <div className="flex items-center gap-2">
-            <FacebookIcon className="inline-block text-white" />
-            <span className="ml-2 text-base leading-6 font-medium text-white">
-              Facebook
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <InstagramIcon className="inline-block text-white" />
-            <span className="ml-2 text-base leading-6 font-medium text-white">
-              Instagram
-            </span>
-          </div>
-          <a
-            href="https://wa.me/message/YYJWHNXPTEZMJ1"
-            className="flex items-center gap-2"
-            target="_blank"
+
+        <div className="flex w-full flex-col items-center justify-start gap-6 sm:gap-8 md:gap-10 lg:w-auto lg:items-start">
+          <img
+            src={logo}
+            alt="Logo Fixa Comunicação Visual - Especialistas em Fachadas"
+            className="w-32 sm:w-40 md:w-auto"
+            itemProp="logo"
+          />
+          <p
+            className="max-w-full text-center text-sm leading-5 font-medium text-white sm:text-base sm:leading-6 lg:max-w-120 lg:text-left"
+            itemProp="description"
           >
-            <Whatsapp_icon className="inline-block text-white" />
-            <span className="hover:text-secondary-yellow ml-2 text-base leading-6 font-medium text-white">
-              Whatsapp
-            </span>
-          </a>
+            <strong itemProp="name">Fixa Comunicação Visual</strong>:
+            Especialistas em <strong>fachadas</strong>, desenvolvemos projetos
+            personalizados para valorizar a identidade da sua marca. Da criação
+            à instalação, entregamos soluções completas com qualidade, inovação
+            e foco nos resultados do seu negócio.
+          </p>
+        </div>
+
+        <div className="flex w-full flex-col items-center justify-start gap-3 sm:gap-4 lg:w-auto lg:items-start">
+          <h3 className="text-xl font-bold text-white sm:text-2xl">Contatos</h3>
+          <address
+            className="flex flex-col items-center gap-3 not-italic sm:flex-row sm:gap-4 lg:flex-col lg:items-start"
+            itemScope
+            itemType="https://schema.org/PostalAddress"
+          >
+            <div className="flex items-center gap-2">
+              <a
+                href="https://g.co/kgs/JGGiiNA"
+                target="_blank"
+                className="group flex items-center gap-2 transition-colors duration-200"
+              >
+                <MapPin className="group-hover:text-secondary-yellow inline-block h-5 w-5 flex-shrink-0 text-white transition-colors duration-200" />
+                <span className="group-hover:text-secondary-yellow text-center text-sm leading-5 font-medium text-white transition-colors duration-200 sm:text-base sm:leading-6 lg:text-left">
+                  <span itemProp="streetAddress">
+                    Rua Carlos Giaxa 6-83 PQ Julio Nobrega
+                  </span>{" "}
+                  - <span itemProp="addressLocality">Bauru</span> -{" "}
+                  <span itemProp="addressRegion">SP</span> -{" "}
+                  <span itemProp="postalCode">CEP 17003-421</span>
+                </span>
+              </a>
+            </div>
+            <a
+              href="mailto:contato@fixacv.com.br"
+              className="group flex items-center gap-2 transition-colors duration-200"
+              itemProp="email"
+              aria-label="Enviar email para Fixa Comunicação Visual"
+              title="Envie um email para contato@fixacv.com.br"
+            >
+              <Mail className="group-hover:text-secondary-yellow inline-block h-5 w-5 flex-shrink-0 text-white transition-colors duration-200" />
+              <span className="group-hover:text-secondary-yellow text-center text-sm leading-5 font-medium text-white transition-colors duration-200 sm:text-base sm:leading-6 lg:text-left">
+                contato@fixacv.com.br
+              </span>
+            </a>
+          </address>
+        </div>
+
+        <div className="flex w-full flex-col items-center justify-start gap-3 sm:gap-4 lg:w-auto lg:items-start">
+          <h3 className="text-xl font-bold text-white sm:text-2xl">
+            Redes Sociais
+          </h3>
+          <nav
+            className="flex flex-col items-center gap-3 sm:gap-4 lg:items-start"
+            role="navigation"
+            aria-label="Redes sociais"
+          >
+            <a
+              href="https://www.facebook.com/Fixacomunicacaovisual"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 transition-colors duration-200"
+              aria-label="Facebook da Fixa Comunicação Visual"
+              title="Siga-nos no Facebook"
+              itemProp="sameAs"
+            >
+              <FacebookIcon className="group-hover:text-secondary-yellow inline-block h-5 w-5 text-white transition-colors duration-200" />
+              <span className="group-hover:text-secondary-yellow text-sm leading-5 font-medium text-white transition-colors duration-200 sm:text-base sm:leading-6">
+                Facebook
+              </span>
+            </a>
+            <a
+              href="https://www.instagram.com/fixacomunicacaovisual/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 transition-colors duration-200"
+              aria-label="Instagram da Fixa Comunicação Visual"
+              title="Siga-nos no Instagram"
+              itemProp="sameAs"
+            >
+              <InstagramIcon className="group-hover:text-secondary-yellow inline-block h-5 w-5 text-white transition-colors duration-200" />
+              <span className="group-hover:text-secondary-yellow text-sm leading-5 font-medium text-white transition-colors duration-200 sm:text-base sm:leading-6">
+                Instagram
+              </span>
+            </a>
+            <a
+              href="https://wa.me/message/YYJWHNXPTEZMJ1"
+              className="group flex items-center gap-2 transition-colors duration-200"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp da Fixa Comunicação Visual"
+              title="Converse conosco no WhatsApp"
+            >
+              <Whatsapp_icon className="group-hover:text-secondary-yellow inline-block h-5 w-5 text-white transition-colors duration-200" />
+              <span className="group-hover:text-secondary-yellow text-sm leading-5 font-medium text-white transition-colors duration-200 sm:text-base sm:leading-6">
+                Whatsapp
+              </span>
+            </a>
+          </nav>
         </div>
       </footer>
     </div>

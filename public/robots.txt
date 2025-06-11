@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.fixacv.com.br/sitemap.xml
+
+# Allow important pages
+Allow: /
+Allow: /quem-somos
+Allow: /servicos
+Allow: /contato
+Allow: /portfolio
+
+# Crawl-delay (opcional)
+Crawl-delay: 1
