@@ -8,8 +8,7 @@ interface FeedbackProps {
 
 export default function Feedback({ text, user }: FeedbackProps) {
   return (
-    <div className="flex h-full w-full flex-col items-start justify-between gap-4 rounded-xl bg-[#F5F5F5] p-5 shadow-md sm:gap-5 sm:p-6 md:rounded-2xl">
-      {" "}
+    <div className="flex h-full w-full flex-col items-start justify-between gap-4 rounded-xl bg-[#F5F5F5] p-5 shadow-md transition-transform duration-300 ease-in-out hover:scale-105 sm:gap-5 sm:p-6 md:rounded-2xl">
       <div className="flex items-start justify-start rounded-full bg-white p-2.5 shadow sm:p-3">
         <Quote
           fill="#474A56"
