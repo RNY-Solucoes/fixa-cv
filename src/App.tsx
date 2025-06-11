@@ -26,18 +26,17 @@ import Feedback from "./Components/Feedback/Feedback";
 import Facebook_icon from "./Components/facebook_icon";
 import Whatsapp_icon from "./Components/whatsapp_icon";
 import logo from "./assets/images/logo.svg";
+import slide1 from "./assets/images/slide1.png";
+import slide2 from "./assets/images/slide2.png";
+import slide3 from "./assets/images/slide3.png";
+import slide4 from "./assets/images/slide4.png";
 
 function App() {
   // Estado para controlar o slide atual
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // Array com os slides
-  const slides = [
-    "/src/assets/images/slide1.png",
-    "/src/assets/images/slide2.png",
-    "/src/assets/images/slide3.png",
-    "/src/assets/images/slide4.png",
-  ];
+  const slides = [slide1, slide2, slide3, slide4];
 
   // useEffect para o slideshow automático
   useEffect(() => {
