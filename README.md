@@ -157,61 +157,12 @@ fixacv/
   /* Texto principal */;
 ```
 
-### Typography
+### Tipografia
 
-- **Fonte Principal**: Inter (Google Fonts)
+- **Fonte Principal**: Ubuntu (Google Fonts)
 - **Pesos Utilizados**: 300, 400, 500, 600, 700, 800
 - **Hierarquia**: h1 (48px), h2 (40px), h3 (24px), body (16px)
 
-### Breakpoints Responsivos
-
-```css
-sm: 640px    /* Tablets */
-md: 768px    /* Desktop pequeno */
-lg: 1024px   /* Desktop médio */
-xl: 1280px   /* Desktop grande */
-```
-
-## 🎠 Carrossel de Fachadas - Detalhes Técnicos
-
-### Configuração do Embla Carousel
-
-```typescript
-const [emblaRef, emblaApi] = useEmblaCarousel(
-  {
-    align: "center", // Centraliza o slide ativo
-    containScroll: "trimSnaps", // Remove slides vazios
-    dragFree: false, // Snap obrigatório
-    loop: false, // Sem loop infinito
-    skipSnaps: false, // Todos os slides são válidos
-    inViewThreshold: 0.7, // 70% visível para ser considerado ativo
-  },
-  [ClassNames()],
-); // Plugin para classes CSS automáticas
-```
-
-### Efeito Scale CSS
-
-```css
-.embla__slide {
-  opacity: 0.7;
-  transform: scale(0.85);
-  transition:
-    opacity 0.3s ease-out,
-    transform 0.3s ease-out;
-}
-
-.embla__slide.is-snapped {
-  opacity: 1;
-  transform: scale(1);
-}
-```
-
-### Slides Responsivos
-
-- **Mobile**: 85% da largura do container
-- **Tablet**: 65% da largura do container
-- **Desktop**: 45% da largura do container
 
 ## 📈 Performance e SEO
 
@@ -288,13 +239,6 @@ Este projeto foi desenvolvido como trabalho freelancer, focando em:
 - **Responsividade** - Funciona perfeitamente em todos os dispositivos
 - **Manutenibilidade** - Código limpo e bem estruturado
 
-### Metodologia
-
-- **Mobile First** - Design pensado para dispositivos móveis
-- **Progressive Enhancement** - Funcionalidades adicionais para telas maiores
-- **Component-Driven Development** - Componentes reutilizáveis
-- **Type Safety** - TypeScript para maior confiabilidade
-
 ### Entregáveis
 
 - ✅ Website responsivo completo
@@ -303,32 +247,6 @@ Este projeto foi desenvolvido como trabalho freelancer, focando em:
 - ✅ Performance de carregamento < 3s
 - ✅ Compatibilidade cross-browser
 - ✅ Documentação técnica completa
-
-## 📦 Dependências Principais
-
-```json
-{
-  "react": "^18.2.0",
-  "typescript": "^5.0.2",
-  "vite": "^4.4.5",
-  "tailwindcss": "^3.3.0",
-  "@radix-ui/react-separator": "^1.0.3",
-  "embla-carousel-react": "^8.0.0",
-  "embla-carousel-class-names": "^8.0.0",
-  "lucide-react": "^0.263.1",
-  "react-fast-marquee": "^1.6.0"
-}
-```
-
-## 🔧 Scripts Disponíveis
-
-```bash
-npm run dev          # Servidor de desenvolvimento
-npm run build        # Build para produção
-npm run preview      # Preview do build local
-npm run lint         # Verificação de código
-npm run type-check   # Verificação de tipos TypeScript
-```
 
 ## 📄 Licença
 
