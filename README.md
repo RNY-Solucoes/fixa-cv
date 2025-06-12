@@ -74,45 +74,6 @@ Este projeto foi desenvolvido como freelancer para a **Fixa Comunicação Visual
 - **Dados Estruturados** para Google Business
 - **Schema.org LocalBusiness** para SEO local
 
-## 🚀 Como Executar
-
-### Pré-requisitos
-
-```bash
-Node.js 18+
-npm ou yarn
-```
-
-### Instalação
-
-```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/fixacv.git
-
-# Acesse o diretório
-cd fixacv
-
-# Instale as dependências
-npm install
-
-# Execute em desenvolvimento
-npm run dev
-
-# Build para produção
-npm run build
-
-# Preview do build
-npm run preview
-```
-
-### Deploy
-
-```bash
-# Deploy na Vercel
-npm install -g vercel
-vercel --prod
-```
-
 ## 📂 Estrutura do Projeto
 
 ```
@@ -162,7 +123,6 @@ fixacv/
 - **Fonte Principal**: Ubuntu (Google Fonts)
 - **Pesos Utilizados**: 300, 400, 500, 600, 700, 800
 - **Hierarquia**: h1 (48px), h2 (40px), h3 (24px), body (16px)
-
 
 ## 📈 Performance e SEO
 
