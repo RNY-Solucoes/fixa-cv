@@ -1,4 +1,4 @@
-import { Check, ChevronRight, Mail, MapPin } from "lucide-react";
+import { Check, Mail, MapPin } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import Header from "./Components/Header";
 import { Button } from "./Components/ui/button";
@@ -26,10 +26,10 @@ import Feedback from "./Components/Feedback/Feedback";
 import Facebook_icon from "./Components/facebook_icon";
 import Whatsapp_icon from "./Components/whatsapp_icon";
 import logo from "./assets/images/logo.svg";
-import slide1 from "./assets/images/slide1.png";
-import slide2 from "./assets/images/slide2.png";
-import slide3 from "./assets/images/slide3.png";
-import slide4 from "./assets/images/slide4.png";
+import slide1 from "./assets/images/slide6.png";
+import slide2 from "./assets/images/slide5.png";
+import slide3 from "./assets/images/slide1.png";
+import slide4 from "./assets/images/slide2.png";
 
 function App() {
   // Estado para controlar o slide atual
@@ -196,16 +196,16 @@ function App() {
     };
   }, []);
 
-  const handleScrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  // const handleScrollToSection = (sectionId: string) => {
+  //   const element = document.getElementById(sectionId);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
 
   return (
     <div className="flex min-h-screen w-full flex-col">
-      <header className="relative flex h-[600px] w-full flex-col overflow-hidden sm:h-[700px] md:h-[800px]">
+      <header className="relative flex h-[600px] w-full flex-col overflow-hidden sm:h-[700px] md:h-[750px]">
         {/* Container dos slides */}
         <div className="">
           {slides.map((slide, index) => (
@@ -239,7 +239,7 @@ function App() {
           ))}
         </div>
         <Header />
-        <div className="flex w-full flex-col justify-end px-4 py-16 text-white sm:px-8 sm:py-20 md:px-16 md:py-28 lg:flex-row lg:px-25">
+        {/* <div className="flex w-full flex-col justify-end px-4 py-16 text-white sm:px-8 sm:py-20 md:px-16 md:py-28 lg:flex-row lg:px-25">
           <div className="flex flex-col items-center gap-4 sm:gap-5 lg:items-end">
             <div className="rounded-xl bg-black/30 p-4 backdrop-blur-sm sm:p-6 md:p-8">
               <h1 className="max-w-full px-4 text-center text-3xl leading-tight font-bold tracking-wide sm:max-w-130 sm:px-0 sm:text-4xl sm:leading-12 md:text-5xl md:leading-16 lg:text-right lg:text-6xl lg:leading-18">
@@ -270,7 +270,7 @@ function App() {
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
       </header>
 
       <main

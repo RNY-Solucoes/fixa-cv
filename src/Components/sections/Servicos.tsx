@@ -1,19 +1,43 @@
 import Bean from "../bean";
-import FachadasCarousel from "../FachadaCarousel/FachadaCarousel";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import comercio from "../../assets/fachadas/fachada6.png";
-import residencial from "../../assets/fachadas/residencial.jpg";
-import letraCaixa from "../../assets/fachadas/letra_caixa.jpg";
-import totem from "../../assets/fachadas/totem.jpg";
+// Importar imagens de cada categoria
+// Comerciais
+import comercial1 from "../../assets/comerciais/comercial1.jpg";
+import comercial2 from "../../assets/comerciais/comercial2.jpg";
+import comercial3 from "../../assets/comerciais/comercial3.jpg";
+import comercial4 from "../../assets/comerciais/comercial4.jpg";
+import comercial5 from "../../assets/comerciais/comercial5.jpg";
+import comercial6 from "../../assets/comerciais/comercial6.jpg";
+
+// Residenciais
+import residencial1 from "../../assets/residenciais/residencial1.jpg";
+import residencial2 from "../../assets/residenciais/residencial2.jpg";
+
+// Letra Caixa
+import letraCaixa1 from "../../assets/letracaixa/letracaixa1.jpg";
+import letraCaixa2 from "../../assets/letracaixa/letracaixa2.jpg";
+import letraCaixa3 from "../../assets/letracaixa/letracaixa3.jpg";
+import letraCaixa4 from "../../assets/letracaixa/letracaixa4.jpg";
+import letraCaixa5 from "../../assets/letracaixa/letracaixa5.jpg";
+import letraCaixa6 from "../../assets/letracaixa/letracaixa6.jpg";
+import letraCaixa7 from "../../assets/letracaixa/letracaixa7.jpg";
+
+// Totens
+import totem1 from "../../assets/totens/totem1.jpg";
+import totem2 from "../../assets/totens/totem2.jpg";
+import totem3 from "../../assets/totens/totem3.jpg";
+import totem4 from "../../assets/totens/totem4.jpg";
+import totem5 from "../../assets/totens/totem5.jpg";
+import totem6 from "../../assets/totens/totem6.jpg";
 
 const fachadaData = {
   comercial: {
     mainDescription:
       "ACM (Aluminum Composite Material) para fachadas comerciais personalizadas.",
-
     subItems: [
       {
         title: "ACM 3mm",
@@ -84,6 +108,29 @@ const fachadaData = {
   },
 };
 
+// Imagens para cada categoria
+const imagens = {
+  comercial: [
+    comercial1,
+    comercial2,
+    comercial3,
+    comercial4,
+    comercial5,
+    comercial6,
+  ],
+  residencial: [residencial1, residencial2],
+  letraCaixa: [
+    letraCaixa1,
+    letraCaixa2,
+    letraCaixa3,
+    letraCaixa4,
+    letraCaixa5,
+    letraCaixa6,
+    letraCaixa7,
+  ],
+  totens: [totem1, totem2, totem3, totem4, totem5, totem6],
+};
+
 // Dados para o caso padrão (fallback)
 const defaultFachadaDetails = {
   mainDescription: "Totens pequenos e/ou gigantes para melhor visibilidade.",
@@ -95,22 +142,84 @@ const defaultFachadaDetails = {
 
 type FachadaTipo = "comercial" | "residencial" | "letraCaixa" | "totens";
 
+// Componente do Slider
+function ImageSlider({
+  images,
+  categoria,
+}: {
+  images: string[];
+  categoria: string;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Reset slider to first position when category changes
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [categoria]);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="relative h-48 w-full overflow-hidden rounded-2xl sm:h-64 md:h-80 lg:h-full">
+      <img
+        src={images[currentIndex]}
+        alt={`${categoria} - Imagem ${currentIndex + 1}`}
+        className="h-full w-full object-cover transition-all duration-500 ease-in-out"
+      />
+
+      {images.length > 1 && (
+        <>
+          {/* Botão Anterior */}
+          <button
+            onClick={prevSlide}
+            className="bg-opacity-50 hover:bg-opacity-70 absolute top-1/2 left-2 -translate-y-1/2 transform rounded-full bg-black p-2 text-white transition-all duration-200"
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          {/* Botão Próximo */}
+          <button
+            onClick={nextSlide}
+            className="bg-opacity-50 hover:bg-opacity-70 absolute top-1/2 right-2 -translate-y-1/2 transform rounded-full bg-black p-2 text-white transition-all duration-200"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+          {/* Indicadores */}
+          <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 transform space-x-2">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`h-2 w-2 rounded-full transition-all duration-200 ${
+                  index === currentIndex
+                    ? "bg-secondary-yellow"
+                    : "bg-opacity-50 hover:bg-opacity-70 bg-white"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 export default function Servicos() {
   const [tipoFachada, setTipoFachada] = useState<FachadaTipo>("comercial");
 
-  const imagens: Record<FachadaTipo, string> = {
-    comercial: comercio,
-    residencial: residencial,
-    letraCaixa: letraCaixa,
-    totens: totem,
-  };
-
   const currentDisplayData = fachadaData[tipoFachada] || defaultFachadaDetails;
-  const currentImage = imagens[tipoFachada];
+  const currentImages = imagens[tipoFachada];
 
   return (
     <section
-      className="flex w-full flex-col items-center justify-center gap-16 sm:gap-24 md:gap-32"
+      className="flex w-full flex-col items-center justify-center gap-16 sm:gap-24 md:gap-16"
       id="portfolio"
     >
       {/* Header Section */}
@@ -130,10 +239,6 @@ export default function Servicos() {
               Contratar Serviços
             </Button>
           </div>
-          {/* Substituindo a imagem three pelo carrossel */}
-          <div className="flex h-full w-full items-center justify-center">
-            <FachadasCarousel />
-          </div>
         </div>
       </div>
 
@@ -141,9 +246,9 @@ export default function Servicos() {
       <div className="flex h-full w-full flex-col items-start justify-between gap-6 lg:flex-row lg:gap-10">
         {/* Sidebar - Navigation */}
         <div className="bg-light-white flex h-full w-full flex-col items-start justify-between gap-8 rounded-2xl px-6 py-6 sm:gap-11 sm:px-8 sm:py-8 lg:min-h-[900px] lg:w-auto lg:px-12">
-          <div className="flex w-full flex-col items-start gap-4 sm:gap-6 lg:gap-8">
+          <div className="flex w-full flex-col items-center gap-4 sm:gap-6 lg:items-start lg:gap-8">
             <h3 className="text-xl font-bold sm:text-2xl">Tipos de Fachadas</h3>
-            <div className="flex w-full flex-col gap-2 sm:flex-row sm:gap-4 lg:w-auto lg:flex-col lg:gap-5">
+            <div className="flex w-full flex-col gap-2 sm:flex-row sm:justify-center sm:gap-4 lg:w-auto lg:flex-col lg:items-start lg:justify-start lg:gap-5">
               <Button
                 variant={"link"}
                 onClick={() => setTipoFachada("comercial")}
@@ -197,15 +302,9 @@ export default function Servicos() {
 
         {/* Content Area */}
         <div className="flex h-full w-full flex-col items-start justify-start gap-3 sm:gap-4 md:gap-6 lg:w-3/6">
-          {/* Dynamic Image */}
-          {currentImage && (
-            <div className="h-48 w-full overflow-hidden rounded-2xl sm:h-64 md:h-80 lg:h-full">
-              <img
-                src={currentImage}
-                alt={`Imagem para ${tipoFachada}`}
-                className="h-full w-full object-cover transition-all duration-500 ease-in-out hover:scale-102"
-              />
-            </div>
+          {/* Dynamic Image Slider */}
+          {currentImages && currentImages.length > 0 && (
+            <ImageSlider images={currentImages} categoria={tipoFachada} />
           )}
 
           {/* Content */}
