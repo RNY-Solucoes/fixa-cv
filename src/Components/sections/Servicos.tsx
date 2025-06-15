@@ -219,7 +219,7 @@ export default function Servicos() {
 
   return (
     <section
-      className="flex w-full flex-col items-center justify-center gap-16 sm:gap-24 md:gap-16"
+      className="flex w-full flex-col items-center justify-center gap-16 sm:gap-24 md:gap-32"
       id="portfolio"
     >
       {/* Header Section */}
@@ -235,9 +235,11 @@ export default function Servicos() {
               <span className="text-secondary-yellow">padrão</span> para sua{" "}
               <span className="text-secondary-yellow">empresa</span>.
             </span>
-            <Button className="bg-secondary-yellow hover:bg-mostard-orange w-full cursor-pointer px-6 py-3 text-sm font-bold sm:w-fit sm:py-5.5 sm:text-base">
-              Contratar Serviços
-            </Button>
+            <a href="#contato">
+              <Button className="bg-secondary-yellow hover:bg-mostard-orange w-full cursor-pointer px-6 py-3 text-sm font-bold sm:w-fit sm:py-5.5 sm:text-base">
+                Contratar Serviços
+              </Button>
+            </a>
           </div>
         </div>
       </div>
@@ -246,9 +248,9 @@ export default function Servicos() {
       <div className="flex h-full w-full flex-col items-start justify-between gap-6 lg:flex-row lg:gap-10">
         {/* Sidebar - Navigation */}
         <div className="bg-light-white flex h-full w-full flex-col items-start justify-between gap-8 rounded-2xl px-6 py-6 sm:gap-11 sm:px-8 sm:py-8 lg:min-h-[900px] lg:w-auto lg:px-12">
-          <div className="flex w-full flex-col items-center gap-4 sm:gap-6 lg:items-start lg:gap-8">
+          <div className="flex w-full flex-col items-start gap-4 sm:gap-6 lg:gap-8">
             <h3 className="text-xl font-bold sm:text-2xl">Tipos de Fachadas</h3>
-            <div className="flex w-full flex-col gap-2 sm:flex-row sm:justify-center sm:gap-4 lg:w-auto lg:flex-col lg:items-start lg:justify-start lg:gap-5">
+            <div className="flex w-full flex-col gap-2 sm:flex-row sm:gap-4 lg:w-auto lg:flex-col lg:gap-5">
               <Button
                 variant={"link"}
                 onClick={() => setTipoFachada("comercial")}
@@ -287,9 +289,11 @@ export default function Servicos() {
               </Button>
             </div>
           </div>
-          <Button className="bg-secondary-yellow hover:bg-mostard-orange w-full cursor-pointer py-3 text-sm font-bold sm:text-base">
-            Entrar em Contato
-          </Button>
+          <a href="#contato" className="w-full">
+            <Button className="bg-secondary-yellow hover:bg-mostard-orange w-full cursor-pointer py-3 text-sm font-bold sm:text-base">
+              Entrar em Contato
+            </Button>
+          </a>
         </div>
 
         {/* Separator - Hidden on mobile/tablet */}

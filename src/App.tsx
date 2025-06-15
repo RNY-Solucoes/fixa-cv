@@ -447,7 +447,6 @@ function App() {
                   </span>
                 </li>
               </ul>
-
               <a
                 href="#contato"
                 aria-label="Entre em contato para orçamento gratuito"
