@@ -51,7 +51,7 @@ function App() {
   // Array com os slides desktop
   const slides = [slide1, slide2, slide3, slide4];
   
-  // Array com os slides mobile (agora com todas as versões mobile)
+  // Array com os slides mobile 
   const slidesMobile = [slide1_phone, slide2_phone, slide3_phone, slide4_phone];
 
   // useEffect para o slideshow automático
