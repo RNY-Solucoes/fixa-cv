@@ -6,7 +6,6 @@ import { Separator } from "./Components/ui/separator";
 import Marquee from "react-fast-marquee";
 import cruzeiro from "./assets/logos/cruzeiro-do-sul.svg";
 import usp from "./assets/logos/logo-usp.svg";
-import ext from "./assets/logos/ext-logo.svg";
 import super_geeks from "./assets/logos/super-geeks.svg";
 import videira_motors from "./assets/logos/videira-motors.svg";
 import zopone from "./assets/logos/zopone.svg";
@@ -26,10 +25,16 @@ import Feedback from "./Components/Feedback/Feedback";
 import Facebook_icon from "./Components/facebook_icon";
 import Whatsapp_icon from "./Components/whatsapp_icon";
 import logo from "./assets/images/logo.svg";
+// Slides desktop
 import slide1 from "./assets/images/slide6.png";
 import slide2 from "./assets/images/slide5.png";
 import slide3 from "./assets/images/slide1.png";
 import slide4 from "./assets/images/slide2.png";
+// Slides mobile
+import slide1_phone from "./assets/images/slide6_phone.png";
+import slide2_phone from "./assets/images/slide5_phone.png";
+import slide3_phone from "./assets/images/slide1_phone.png";
+import slide4_phone from "./assets/images/slide2_phone.png";
 
 function App() {
   // Estado para controlar o slide atual
@@ -43,8 +48,11 @@ function App() {
   const [isImage1Visible, setIsImage1Visible] = useState(false);
   const [isImage2Visible, setIsImage2Visible] = useState(false);
 
-  // Array com os slides
+  // Array com os slides desktop
   const slides = [slide1, slide2, slide3, slide4];
+  
+  // Array com os slides mobile (agora com todas as versões mobile)
+  const slidesMobile = [slide1_phone, slide2_phone, slide3_phone, slide4_phone];
 
   // useEffect para o slideshow automático
   useEffect(() => {
@@ -209,17 +217,31 @@ function App() {
         {/* Container dos slides */}
         <div className="">
           {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              }`}
-              style={{
-                backgroundImage: `url(${slide})`,
-                transform: "scale(1.02)",
-                zIndex: -1,
-              }}
-            />
+            <div key={index}>
+              {/* Slide para desktop */}
+              <div
+                className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out hidden sm:block ${
+                  index === currentSlide ? "opacity-100" : "opacity-0"
+                }`}
+                style={{
+                  backgroundImage: `url(${slide})`,
+                  transform: "scale(1.02)",
+                  zIndex: -1,
+                }}
+              />
+              
+              {/* Slide para mobile */}
+              <div
+                className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out block sm:hidden ${
+                  index === currentSlide ? "opacity-100" : "opacity-0"
+                }`}
+                style={{
+                  backgroundImage: `url(${slidesMobile[index]})`,
+                  transform: "scale(1.02)",
+                  zIndex: -1,
+                }}
+              />
+            </div>
           ))}
         </div>
 
@@ -239,38 +261,6 @@ function App() {
           ))}
         </div>
         <Header />
-        {/* <div className="flex w-full flex-col justify-end px-4 py-16 text-white sm:px-8 sm:py-20 md:px-16 md:py-28 lg:flex-row lg:px-25">
-          <div className="flex flex-col items-center gap-4 sm:gap-5 lg:items-end">
-            <div className="rounded-xl bg-black/30 p-4 backdrop-blur-sm sm:p-6 md:p-8">
-              <h1 className="max-w-full px-4 text-center text-3xl leading-tight font-bold tracking-wide sm:max-w-130 sm:px-0 sm:text-4xl sm:leading-12 md:text-5xl md:leading-16 lg:text-right lg:text-6xl lg:leading-18">
-                Transformamos sua{" "}
-                <span className="text-secondary-yellow">Marca</span> em{" "}
-                <span className="text-secondary-yellow">Destaque Visual</span>.
-              </h1>
-              <Separator className="bg-secondary-yellow mx-auto my-1 max-w-16 sm:max-w-20 lg:mx-0 lg:ml-auto" />
-              <p className="max-w-full px-4 text-center text-xs leading-5 font-normal text-white sm:max-w-130 sm:px-0 sm:text-sm sm:leading-6 lg:text-right">
-                Especialistas em fachadas há mais de 16 anos, oferecendo
-                soluções personalizadas para destacar sua empresa.
-              </p>
-            </div>
-            <div className="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:gap-2">
-              <Button
-                className="bg-secondary-yellow hover:bg-mostard-orange w-full cursor-pointer px-6 py-3 text-sm font-bold sm:w-auto sm:py-5.5 sm:text-base"
-                onClick={() => handleScrollToSection("quem-somos")}
-              >
-                Quem somos
-              </Button>
-              <Button
-                variant="link"
-                className="cursor-pointer text-sm font-bold text-white sm:text-base"
-                onClick={() => handleScrollToSection("portfolio")}
-              >
-                Nossos serviços{" "}
-                <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
-              </Button>
-            </div>
-          </div>
-        </div> */}
       </header>
 
       <main
@@ -340,7 +330,7 @@ function App() {
                   loading="lazy"
                 />
                 <img
-                  src={ext}
+                  src={superbom}
                   alt="Cliente EXT - Fachada comercial em ACM"
                   className="h-8 w-auto sm:h-10 md:h-12"
                   loading="lazy"
