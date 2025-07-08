@@ -50,8 +50,8 @@ function App() {
 
   // Array com os slides desktop
   const slides = [slide1, slide2, slide3, slide4];
-  
-  // Array com os slides mobile 
+
+  // Array com os slides mobile
   const slidesMobile = [slide1_phone, slide2_phone, slide3_phone, slide4_phone];
 
   // useEffect para o slideshow automático
@@ -220,7 +220,7 @@ function App() {
             <div key={index}>
               {/* Slide para desktop */}
               <div
-                className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out hidden sm:block ${
+                className={`absolute inset-0 hidden bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out sm:block ${
                   index === currentSlide ? "opacity-100" : "opacity-0"
                 }`}
                 style={{
@@ -229,10 +229,10 @@ function App() {
                   zIndex: -1,
                 }}
               />
-              
+
               {/* Slide para mobile */}
               <div
-                className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out block sm:hidden ${
+                className={`absolute inset-0 block bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out sm:hidden ${
                   index === currentSlide ? "opacity-100" : "opacity-0"
                 }`}
                 style={{
@@ -623,24 +623,28 @@ Jmplanejados Junior"
           </div>
         </section>
       </main>
-
       <footer
         className="bg-preto relative mt-24 flex min-h-96 w-full flex-col items-start justify-between gap-8 px-4 py-16 sm:mt-32 sm:px-8 sm:py-20 md:mt-48 md:px-16 md:py-25 lg:flex-row lg:gap-0 lg:px-25"
         role="contentinfo"
         itemScope
         itemType="https://schema.org/LocalBusiness"
       >
-        <a
-          href="https://wa.me/message/YYJWHNXPTEZMJ1"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-secondary-yellow hover:bg-mostard-orange absolute -top-6 left-1/2 flex h-16 w-full max-w-sm -translate-x-1/2 cursor-pointer items-center justify-center rounded-2xl px-4 py-3 text-base font-bold sm:-top-8 sm:h-20 sm:max-w-md sm:px-6 sm:text-lg md:-top-10 md:h-25 md:max-w-[398px] md:text-xl lg:-top-20"
+        <button
+          onClick={() =>
+            window.open(
+              "https://api.whatsapp.com/send/?phone=551432814305&text=Olá%2C+acabei+de+acessar+o+site+de+vocês+e+gostaria+de+mais+informações+sobre+os+serviços+oferecidos.",
+              "_blank",
+              "noopener,noreferrer",
+            )
+          }
+          className="bg-secondary-yellow hover:bg-mostard-orange absolute -top-6 left-1/2 flex h-16 w-full max-w-sm -translate-x-1/2 cursor-pointer items-center justify-center rounded-2xl px-4 py-3 text-base font-bold transition-colors duration-200 sm:-top-8 sm:h-20 sm:max-w-md sm:px-6 sm:text-lg md:-top-10 md:h-25 md:max-w-[398px] md:text-xl lg:-top-20"
           aria-label="Agendar conversa via WhatsApp"
           title="Clique para agendar uma conversa via WhatsApp"
+          id="agendar-conversa"
+          type="button"
         >
           <span className="text-center text-white">AGENDAR UMA CONVERSA</span>
-        </a>
-
+        </button>
         <div className="flex w-full flex-col items-center justify-start gap-6 sm:gap-8 md:gap-10 lg:w-auto lg:items-start">
           <img
             src={logo}
@@ -659,7 +663,6 @@ Jmplanejados Junior"
             e foco nos resultados do seu negócio.
           </p>
         </div>
-
         <div className="flex w-full flex-col items-center justify-start gap-3 sm:gap-4 lg:w-auto lg:items-start">
           <h3 className="text-xl font-bold text-white sm:text-2xl">Contatos</h3>
           <address
