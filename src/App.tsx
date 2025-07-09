@@ -643,7 +643,9 @@ Jmplanejados Junior"
           id="agendar-conversa"
           type="button"
         >
-          <span className="text-center text-white">AGENDAR UMA CONVERSA</span>
+          <span className="text-center text-white" id="agendar-conversa">
+            AGENDAR UMA CONVERSA
+          </span>
         </button>
         <div className="flex w-full flex-col items-center justify-start gap-6 sm:gap-8 md:gap-10 lg:w-auto lg:items-start">
           <img
@@ -748,8 +750,14 @@ Jmplanejados Junior"
               title="Converse conosco no WhatsApp"
               id="agendar-conversa"
             >
-              <Whatsapp_icon className="group-hover:text-secondary-yellow inline-block h-5 w-5 text-white transition-colors duration-200" />
-              <span className="group-hover:text-secondary-yellow text-sm leading-5 font-medium text-white transition-colors duration-200 sm:text-base sm:leading-6">
+              <Whatsapp_icon
+                className="group-hover:text-secondary-yellow inline-block h-5 w-5 text-white transition-colors duration-200"
+                id="agendar-conversa"
+              />
+              <span
+                className="group-hover:text-secondary-yellow text-sm leading-5 font-medium text-white transition-colors duration-200 sm:text-base sm:leading-6"
+                id="agendar-conversa"
+              >
                 Whatsapp
               </span>
             </a>
