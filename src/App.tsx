@@ -740,12 +740,13 @@ Jmplanejados Junior"
               </span>
             </a>
             <a
-              href="https://wa.me/message/YYJWHNXPTEZMJ1"
+              href="https://api.whatsapp.com/send/?phone=551432814305&text=Olá%2C+acabei+de+acessar+o+site+de+vocês+e+gostaria+de+mais+informações+sobre+os+serviços+oferecidos."
               className="group flex items-center gap-2 transition-colors duration-200"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp da Fixa Comunicação Visual"
               title="Converse conosco no WhatsApp"
+              id="agendar-conversa"
             >
               <Whatsapp_icon className="group-hover:text-secondary-yellow inline-block h-5 w-5 text-white transition-colors duration-200" />
               <span className="group-hover:text-secondary-yellow text-sm leading-5 font-medium text-white transition-colors duration-200 sm:text-base sm:leading-6">
