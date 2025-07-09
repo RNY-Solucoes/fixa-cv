@@ -7,12 +7,13 @@ interface WhatsappIconProps {
 export default function Whatsapp_icon({
   width,
   height,
-
+  id,
   className,
 }: WhatsappIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      id={id}
       width={width || 21}
       height={height || 21}
       className={`hover:text-secondary-yellow cursor-pointer transition-colors duration-200 ${className}`}
