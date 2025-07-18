@@ -593,6 +593,7 @@ Jmplanejados Junior"
                   className="transition-all duration-200 hover:scale-110"
                   aria-label="WhatsApp da Fixa Comunicação Visual"
                   title="Converse conosco no WhatsApp"
+                  id="agendar-conversa"
                 >
                   <Whatsapp_icon className="text-preto hover:text-secondary-yellow h-6 w-6 transition-colors duration-200" />
                 </a>
