@@ -587,7 +587,7 @@ Jmplanejados Junior"
                   <InstagramIcon className="text-preto hover:text-secondary-yellow h-6 w-6 transition-colors duration-200" />
                 </a>
                 <a
-                  href="https://wa.me/message/YYJWHNXPTEZMJ1"
+                  href="https://api.whatsapp.com/send/?phone=551432814305&text=Olá%2C+acabei+de+acessar+o+site+de+vocês+e+gostaria+de+mais+informações+sobre+os+serviços+oferecidos."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-all duration-200 hover:scale-110"
@@ -595,7 +595,10 @@ Jmplanejados Junior"
                   title="Converse conosco no WhatsApp"
                   id="agendar-conversa"
                 >
-                  <Whatsapp_icon className="text-preto hover:text-secondary-yellow h-6 w-6 transition-colors duration-200" />
+                  <Whatsapp_icon
+                    className="text-preto hover:text-secondary-yellow h-6 w-6 transition-colors duration-200"
+                    id="agendar-conversa"
+                  />
                 </a>
               </div>
 
