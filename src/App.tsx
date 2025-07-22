@@ -648,7 +648,7 @@ Jmplanejados Junior"
           type="button"
         >
           <span className="text-center text-white" id="agendar-conversa">
-            AGENDAR UMA CONVERSA
+            Clique aqui e fale com a gente
           </span>
         </button>
         <div className="flex w-full flex-col items-center justify-start gap-6 sm:gap-8 md:gap-10 lg:w-auto lg:items-start">
